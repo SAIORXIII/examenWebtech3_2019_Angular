@@ -53,11 +53,10 @@ app.post('/add', (req, res) => {
 
 })
 
-
 // Find a product
 app.post('/search', (req, res) => {
  var query = { name: req.body.name }
- db.collection('inhaal').find(query).sort({ reden: 1 }).toArray(function(err, result) {
+ db.collection('inhaal').find(query).sort({reden: 1}).toArray(function(err, result) {
    if (err) throw err
    if (result == '')
        res.json({})
