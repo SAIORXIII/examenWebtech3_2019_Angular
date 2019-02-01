@@ -1,10 +1,12 @@
 <div class = 'container'>
-   <h1>All Products</h1>
+   <h1>Alle inhaal examens</h1>
    <ul>
     <li *ngFor='let product of products'>
       Name : {{ product.name }}<br />
-      Description : {{ product.description }}<br />
-      Price : {{ product.price }}
+      examen : {{ product.examen }}<br />
+      reden : {{ product.reden }}<br />
+      Datum : {{ product.datumIndienen}}
+
     </li>
   </ul>
 

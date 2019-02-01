@@ -9,7 +9,7 @@ import { ProductService } from '../service/product.service';
 })
 
 export class ProductAddComponent {
-   private model = new Product('', '', '','');
+   private model = new Product('', '', '',new Date());
 
    constructor(private productService: ProductService, private router: Router) {}
 

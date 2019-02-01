@@ -9,7 +9,7 @@ var db;
 MongoClient.connect('mongodb://localhost:27017/examen', { useNewUrlParser: true },
  (err, database) => {
     if (err) return console.log(err)
-    db = database.db('products')
+    db = database.db('examen')
     app.listen(process.env.PORT || 4000, () => {
       console.log('Listening on port 4000')
     })
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 
 // list all products
 app.get('/list', (req, res) => {
-  db.collection('products').find().toArray((err, result) => {
+  db.collection('inhaal').find().sort({ name: 1}).toArray((err, result) => {
     if (err) throw err
     res.json(result)
   })
@@ -47,23 +47,17 @@ app.get('/list', (req, res) => {
 
 // Add a product to the db
 app.post('/add', (req, res) => {
-  db.collection('products').insertOne(req.body, (err, result) => {
+  db.collection('inhaal').insertOne(req.body, (err, result) => {
      if (err) throw err
   })
+
 })
 
-// Edit a product
-app.post('/edit', (req, res) => {
-  var query = { name: req.body.name }
-  db.collection('products').replaceOne(query, req.body, (err, result) => {
-     if (err) throw err
-  })
-})
 
 // Find a product
 app.post('/search', (req, res) => {
  var query = { name: req.body.name }
- db.collection('products').find(query).toArray(function(err, result) {
+ db.collection('inhaal').find(query).sort({ reden: 1 }).toArray(function(err, result) {
    if (err) throw err
    if (result == '')
        res.json({})
